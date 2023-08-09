@@ -21,6 +21,8 @@
  */
 package com.adevinta.spark.components.image
 
+import android.graphics.Bitmap
+import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -39,10 +41,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import coil.ImageLoader
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
-import coil.decode.DataSource
+import coil.fetch.DrawableResult
+import coil.fetch.SourceResult
 import coil.request.ErrorResult
 import coil.request.ImageRequest
 import coil.request.NullRequestData
@@ -64,6 +68,10 @@ import com.adevinta.spark.tokens.EmphasizeDim2
 import com.adevinta.spark.tools.modifiers.sparkUsageOverlay
 import com.adevinta.spark.tools.preview.ThemeProvider
 import com.adevinta.spark.tools.preview.ThemeVariant
+import okhttp3.HttpUrl
+import java.io.File
+import java.nio.ByteBuffer
+import coil.decode.DataSource as CoilDataSource
 
 @InternalSparkApi
 @Composable
@@ -221,10 +229,45 @@ public sealed class State {
     public data class Loading(override val painter: Painter?) : State()
 
     /** The request was successful. */
-    public data class Success(override val painter: Painter) : State()
+    public data class Success(
+        override val painter: Painter,
+        val dataSource: DataSource,
+        ) : State()
 
     /** The request failed due to [ErrorResult.throwable]. */
     public data class Error(override val painter: Painter?) : State()
+}
+
+/**
+ * Represents the source that an image was loaded from.
+ *
+ * @see SourceResult.dataSource
+ * @see DrawableResult.dataSource
+ */
+public enum class DataSource {
+
+    /**
+     * Represents an [ImageLoader]'s memory cache.
+     *
+     * This is a special data source as it means the request was
+     * short circuited and skipped the full image pipeline.
+     */
+    MEMORY_CACHE,
+
+    /**
+     * Represents an in-memory data source (e.g. [Bitmap], [ByteBuffer]).
+     */
+    MEMORY,
+
+    /**
+     * Represents a disk-based data source (e.g. [DrawableRes], [File]).
+     */
+    DISK,
+
+    /**
+     * Represents a network-based data source (e.g. [HttpUrl]).
+     */
+    NETWORK
 }
 
 private fun AsyncImagePainter.State.asImageState(): State {
@@ -232,7 +275,19 @@ private fun AsyncImagePainter.State.asImageState(): State {
         AsyncImagePainter.State.Empty -> State.Empty
         is AsyncImagePainter.State.Error -> State.Error(painter)
         is AsyncImagePainter.State.Loading -> State.Loading(painter)
-        is AsyncImagePainter.State.Success -> State.Success(painter)
+        is AsyncImagePainter.State.Success -> State.Success(
+            painter = painter,
+            dataSource = result.dataSource.asImageDatasource(),
+        )
+    }
+}
+
+private fun CoilDataSource.asImageDatasource(): DataSource {
+    return when (this) {
+        CoilDataSource.DISK -> DataSource.DISK
+        CoilDataSource.MEMORY -> DataSource.MEMORY
+        CoilDataSource.MEMORY_CACHE -> DataSource.MEMORY_CACHE
+        CoilDataSource.NETWORK -> DataSource.NETWORK
     }
 }
 
@@ -294,7 +349,7 @@ internal fun ImagePreview(
             transform = {
                 AsyncImagePainter.State.Success(
                     painter,
-                    SuccessResult(drawable, imageRequest, DataSource.DISK),
+                    SuccessResult(drawable, imageRequest, CoilDataSource.DISK),
                 )
             },
         )
