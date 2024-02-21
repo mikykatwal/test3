@@ -157,7 +157,11 @@ internal fun ComponentActivity.CatalogApp(
             DeviceConfigurationOverride(
                 override = DeviceConfigurationOverride.DarkMode(useDark)
                     then DeviceConfigurationOverride.LayoutDirection(layoutDirection)
-                    then DeviceConfigurationOverride.FontScale(theme.fontScale.takeUnless { theme.fontScaleMode == FontScaleMode.System } ?: LocalDensity.current.fontScale),
+                    then DeviceConfigurationOverride.FontScale(
+                        theme.fontScale.takeUnless {
+                            theme.fontScaleMode == FontScaleMode.System
+                        } ?: LocalDensity.current.fontScale,
+                    ),
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
