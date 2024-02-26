@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Adevinta
+ * Copyright (c) 2023-2024 Adevinta
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -65,7 +65,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adevinta.spark.InternalSparkApi
-import com.adevinta.spark.LocalLegacyStyle
 import com.adevinta.spark.PreviewTheme
 import com.adevinta.spark.R
 import com.adevinta.spark.SparkTheme
@@ -122,7 +121,7 @@ internal fun SparkTextField(
                 }
                 .defaultMinSize(
                     minWidth = TextFieldDefaults.MinWidth,
-                    minHeight = if (LocalLegacyStyle.current) TextFieldDefaults.MinHeight else TextFieldMinHeight,
+                    minHeight = TextFieldMinHeight,
                 )
                 .sparkUsageOverlay(),
             onValueChange = onValueChange,
@@ -222,7 +221,7 @@ internal fun SparkTextField(
             }
                 .defaultMinSize(
                     minWidth = TextFieldDefaults.MinWidth,
-                    minHeight = if (LocalLegacyStyle.current) TextFieldDefaults.MinHeight else TextFieldMinHeight,
+                    minHeight = TextFieldMinHeight,
                 )
                 .sparkUsageOverlay(),
             onValueChange = onValueChange,
@@ -302,7 +301,7 @@ private fun OutlinedBorderContainerBox(
     interactionSource: InteractionSource,
     colors: DefaultSparkTextFieldColors,
 ) {
-    val shape = if (LocalLegacyStyle.current) SparkTheme.shapes.extraSmall else SparkTheme.shapes.large
+    val shape = SparkTheme.shapes.large
     val borderStroke = animateBorderStrokeAsState(
         enabled,
         readOnly,

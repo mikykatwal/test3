@@ -19,7 +19,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@file:Suppress("DEPRECATION")
 
 package com.adevinta.spark.components.tags
 
@@ -125,54 +124,6 @@ public fun TagOutlined(
         ),
         leadingIcon = leadingIcon,
         tint = tint,
-    )
-}
-
-@Deprecated(
-    "Use TagOutlined with neutral intent instead",
-    ReplaceWith("TagOutlined(text, modifier, intent, leadingIcon, tint)"),
-)
-@Composable
-public fun TagPromote(
-    modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit,
-) {
-    TagOutlined(
-        modifier = modifier,
-        intent = TagIntent.Neutral,
-        content = content,
-    )
-}
-
-@Deprecated(
-    "Use TagOutlined with main intent instead",
-    ReplaceWith("TagOutlined(text, modifier, intent, leadingIcon, tint)"),
-)
-@Composable
-public fun TagUrgent(
-    modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit,
-) {
-    TagOutlined(
-        modifier = modifier,
-        intent = TagIntent.Main,
-        content = content,
-    )
-}
-
-@Deprecated(
-    "Use TagOutlined with support intent instead",
-    ReplaceWith("TagOutlined(text, modifier, intent, leadingIcon, tint)"),
-)
-@Composable
-public fun TagPro(
-    modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit,
-) {
-    TagOutlined(
-        modifier = modifier,
-        intent = TagIntent.Support,
-        content = content,
     )
 }
 

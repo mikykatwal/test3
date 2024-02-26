@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Adevinta
+ * Copyright (c) 2023-2024 Adevinta
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -122,15 +122,14 @@ internal fun ComponentActivity.CatalogApp(
     val useDark = (theme.themeMode == ThemeMode.System && isSystemInDarkTheme()) || theme.themeMode == ThemeMode.Dark
 
     val colors =
-        themeProvider.colors(useDarkColors = useDark, isPro = theme.userMode == UserMode.Pro, isLegacy = false)
-    val shapes = themeProvider.shapes(isLegacy = false)
-    val typography = themeProvider.typography(isLegacy = false)
+        themeProvider.colors(useDarkColors = useDark, isPro = theme.userMode == UserMode.Pro)
+    val shapes = themeProvider.shapes()
+    val typography = themeProvider.typography()
 
     SparkTheme(
         colors = colors,
         shapes = shapes,
         typography = typography,
-        useLegacyStyle = false,
     ) {
         CompositionLocalProvider(LocalRippleTheme provides SparkRippleTheme) {
             val layoutDirection = when (theme.textDirection) {
