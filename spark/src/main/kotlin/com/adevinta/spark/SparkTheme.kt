@@ -21,6 +21,7 @@
  */
 package com.adevinta.spark
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,7 +29,9 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalUseFallbackRippleImplementation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -58,6 +61,7 @@ import com.adevinta.spark.tokens.calculateWindowSizeClass
 import com.adevinta.spark.tokens.darkSparkColors
 import com.adevinta.spark.tokens.debugColors
 import com.adevinta.spark.tokens.lightSparkColors
+import com.adevinta.spark.tokens.ripple
 import com.adevinta.spark.tokens.sparkFontFamily
 import com.adevinta.spark.tokens.sparkShapes
 import com.adevinta.spark.tokens.sparkTypography
@@ -89,7 +93,7 @@ import com.adevinta.spark.tools.preview.ThemeVariant
  * which component is from spark or not.
  * @param useLegacyStyle enabling this will makes the components use the visual from the previous DS of LBC.
  */
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalMaterial3Api::class)
 @Composable
 public fun SparkTheme(
     // We don't want to automatically support dark theme in the app but still want it in the previews
@@ -128,6 +132,8 @@ public fun SparkTheme(
 
     val typo = typography.updateFontFamily(fontFamily = fontFamily)
 
+    val rippleIndication = ripple()
+
     CompositionLocalProvider(
         LocalSparkColors provides rememberedColors,
         LocalSparkTypography provides typo,
@@ -136,6 +142,8 @@ public fun SparkTheme(
         LocalHighlightComponents provides useSparkComponentsHighlighter,
         LocalLegacyStyle provides useLegacyStyle,
         LocalWindowSizeClass provides calculateWindowSizeClass(),
+        LocalUseFallbackRippleImplementation provides false,
+        LocalIndication provides rippleIndication,
     ) {
         MaterialTheme(
             colorScheme = rememberedColors.asMaterial3Colors(),

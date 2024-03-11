@@ -68,6 +68,7 @@ import com.adevinta.spark.icons.DeleteOutline
 import com.adevinta.spark.icons.OfferOutline
 import com.adevinta.spark.icons.SparkIcon
 import com.adevinta.spark.icons.SparkIcons
+import com.adevinta.spark.tokens.ripple
 import com.adevinta.spark.tools.modifiers.dashedBorder
 import com.adevinta.spark.tools.modifiers.ifTrue
 import com.adevinta.spark.tools.modifiers.minimumTouchTargetSize
@@ -256,7 +257,7 @@ public fun Chip(
                             enabled = enabled,
                             onClickLabel = onCloseLabel,
                             interactionSource = remember { MutableInteractionSource() },
-                            indication = rememberRipple(
+                            indication = ripple(
                                 bounded = false,
                                 radius = 24.dp / 2,
                             ),
@@ -349,7 +350,7 @@ public fun ChipSelectable(
                             enabled = enabled,
                             onClickLabel = onCloseLabel,
                             interactionSource = remember { MutableInteractionSource() },
-                            indication = rememberRipple(
+                            indication = ripple(
                                 bounded = false,
                                 radius = 24.dp / 2,
                             ),
