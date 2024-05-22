@@ -145,13 +145,11 @@ internal fun SparkModalBottomSheet(
     modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(),
     shape: Shape = ExpandedShape,
-    containerColor: Color = SheetDefaults.ContainerColor,
+    containerColor: Color = BottomSheetDefaults.ContainerColor,
     contentColor: Color = contentColorFor(containerColor),
-    dragHandle: @Composable (() -> Unit)? = {
-        DragHandle()
-    },
-    windowInsets: WindowInsets = BottomSheetDefaults.windowInsets,
-    properties: ModalBottomSheetProperties = ModalBottomSheetDefaults.properties(),
+    dragHandle: (@Composable () -> Unit)? = { DragHandle() },
+    contentWindowInsets: @Composable () -> WindowInsets = { BottomSheetDefaults.windowInsets },
+    properties: ModalBottomSheetProperties = ModalBottomSheetDefaults.properties,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     androidx.compose.material3.ModalBottomSheet(
@@ -161,7 +159,7 @@ internal fun SparkModalBottomSheet(
         shape = shape,
         containerColor = containerColor,
         contentColor = contentColor,
-        windowInsets = windowInsets,
+        contentWindowInsets = contentWindowInsets,
         properties = properties,
         dragHandle = null,
     ) {
