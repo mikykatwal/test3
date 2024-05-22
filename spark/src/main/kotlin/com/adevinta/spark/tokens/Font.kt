@@ -30,7 +30,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import com.adevinta.spark.R
-import kotlinx.coroutines.CoroutineExceptionHandler
 
 /**
  * Creates a [SparkFontFamily] with the given [fontFamily] and [useSparkTokensHighlighter].

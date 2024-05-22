@@ -118,7 +118,6 @@ private val NightShade100 = Color(0xFFF0F2F5)
 private val NightShade50 = Color(0xFFF6F8F9)
 // endregion
 
-
 internal val LeboncoinColorPartLight: SparkColors = lightSparkColors(
     accent = Plum500,
     onAccent = Color.White,
