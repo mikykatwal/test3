@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Adevinta
+ * Copyright (c) 2023-2024 Adevinta
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,27 +29,19 @@ import com.adevinta.spark.tokens.SparkTypography
 
 public object LeboncoinTheme : ThemeProvider {
     @Composable
-    override fun colors(useDarkColors: Boolean, isPro: Boolean, isLegacy: Boolean): SparkColors {
-        return when {
-            useDarkColors -> {
-                if (isPro) LeboncoinColorProDark else LeboncoinColorPartDark
-            }
-
-            isLegacy -> {
-                if (isPro) LeboncoinColorProLightLegacy else LeboncoinColorPartLightLegacy
-            }
-
-            else -> {
-                if (isPro) LeboncoinColorProLight else LeboncoinColorPartLight
-            }
+    override fun colors(useDarkColors: Boolean, isPro: Boolean): SparkColors {
+        return if (useDarkColors) {
+            if (isPro) LeboncoinColorProDark else LeboncoinColorPartDark
+        } else {
+            if (isPro) LeboncoinColorProLight else LeboncoinColorPartLight
         }
     }
 
     @Composable
-    override fun shapes(isLegacy: Boolean): SparkShapes = LeboncoinShapes
+    override fun shapes(): SparkShapes = LeboncoinShapes
 
     @Composable
-    override fun typography(isLegacy: Boolean): SparkTypography {
-        return if (isLegacy) LeboncoinLegacyTypo else LeboncoinTypo
+    override fun typography(): SparkTypography {
+        return LeboncoinTypo
     }
 }

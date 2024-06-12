@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Adevinta
+ * Copyright (c) 2023-2024 Adevinta
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adevinta.spark.InternalSparkApi
-import com.adevinta.spark.LocalLegacyStyle
 import com.adevinta.spark.PreviewTheme
 import com.adevinta.spark.SparkTheme
 import com.adevinta.spark.components.buttons.BaseSparkButton
@@ -94,7 +93,7 @@ public fun SparkSnackbar(
         modifier = modifier
             .padding(16.dp)
             .sparkUsageOverlay(),
-        shape = if (LocalLegacyStyle.current) SparkTheme.shapes.extraSmall else SparkTheme.shapes.small,
+        shape = SparkTheme.shapes.small,
         actionOnNewLine = actionOnNewLine,
         containerColor = colors.baseColor,
         contentColor = contentColor,

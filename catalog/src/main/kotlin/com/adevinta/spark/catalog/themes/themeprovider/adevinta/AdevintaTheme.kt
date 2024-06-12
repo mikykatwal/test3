@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Adevinta
+ * Copyright (c) 2023-2024 Adevinta
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ import com.adevinta.spark.tokens.sparkTypography
 
 public object AdevintaTheme : ThemeProvider {
     @Composable
-    override fun colors(useDarkColors: Boolean, isPro: Boolean, isLegacy: Boolean): SparkColors {
+    override fun colors(useDarkColors: Boolean, isPro: Boolean): SparkColors {
         return when {
             useDarkColors -> darkSparkColors()
             else -> lightSparkColors()
@@ -41,8 +41,8 @@ public object AdevintaTheme : ThemeProvider {
     }
 
     @Composable
-    override fun shapes(isLegacy: Boolean): SparkShapes = sparkShapes()
+    override fun shapes(): SparkShapes = sparkShapes()
 
     @Composable
-    override fun typography(isLegacy: Boolean): SparkTypography = sparkTypography()
+    override fun typography(): SparkTypography = sparkTypography()
 }
