@@ -27,6 +27,7 @@ import com.adevinta.spark.icons.SparkIcon.DrawableRes
 
 public object SparkIcons
 
+public val SparkIcons.360: DrawableRes get() = DrawableRes(R.drawable.spark_icons_360)
 public val SparkIcons.Accessories: DrawableRes get() = DrawableRes(R.drawable.spark_icons_accessories)
 public val SparkIcons.AccountFill: DrawableRes get() = DrawableRes(R.drawable.spark_icons_account_fill)
 public val SparkIcons.AccountOutline: DrawableRes get() = DrawableRes(R.drawable.spark_icons_account_outline)
@@ -263,6 +264,7 @@ public val SparkIcons.KeyOutline: DrawableRes get() = DrawableRes(R.drawable.spa
 public val SparkIcons.KeylessAccess: DrawableRes get() = DrawableRes(R.drawable.spark_icons_keyless_access)
 public val SparkIcons.Land: DrawableRes get() = DrawableRes(R.drawable.spark_icons_land)
 public val SparkIcons.LastFloor: DrawableRes get() = DrawableRes(R.drawable.spark_icons_last_floor)
+public val SparkIcons.Lens: DrawableRes get() = DrawableRes(R.drawable.spark_icons_lens)
 public val SparkIcons.License: DrawableRes get() = DrawableRes(R.drawable.spark_icons_license)
 public val SparkIcons.Lift: DrawableRes get() = DrawableRes(R.drawable.spark_icons_lift)
 public val SparkIcons.Light: DrawableRes get() = DrawableRes(R.drawable.spark_icons_light)
@@ -339,6 +341,7 @@ public val SparkIcons.PetAccessory: DrawableRes get() = DrawableRes(R.drawable.s
 public val SparkIcons.Pets: DrawableRes get() = DrawableRes(R.drawable.spark_icons_pets)
 public val SparkIcons.PhoneFill: DrawableRes get() = DrawableRes(R.drawable.spark_icons_phone_fill)
 public val SparkIcons.PhoneOutline: DrawableRes get() = DrawableRes(R.drawable.spark_icons_phone_outline)
+public val SparkIcons.PhotoPack: DrawableRes get() = DrawableRes(R.drawable.spark_icons_photo_pack)
 public val SparkIcons.Pieces: DrawableRes get() = DrawableRes(R.drawable.spark_icons_pieces)
 public val SparkIcons.PiggyBankFill: DrawableRes get() = DrawableRes(R.drawable.spark_icons_piggy_bank_fill)
 public val SparkIcons.PiggyBankOutline: DrawableRes get() = DrawableRes(R.drawable.spark_icons_piggy_bank_outline)
@@ -466,6 +469,8 @@ public val SparkIcons.Undo: DrawableRes get() = DrawableRes(R.drawable.spark_ico
 public val SparkIcons.Univers: DrawableRes get() = DrawableRes(R.drawable.spark_icons_univers)
 public val SparkIcons.UnlockFill: DrawableRes get() = DrawableRes(R.drawable.spark_icons_unlock_fill)
 public val SparkIcons.UnlockOutline: DrawableRes get() = DrawableRes(R.drawable.spark_icons_unlock_outline)
+public val SparkIcons.UrgentFill: DrawableRes get() = DrawableRes(R.drawable.spark_icons_urgent_fill)
+public val SparkIcons.UrgentOutline: DrawableRes get() = DrawableRes(R.drawable.spark_icons_urgent_outline)
 public val SparkIcons.UserCheckFill: DrawableRes get() = DrawableRes(R.drawable.spark_icons_user_check_fill)
 public val SparkIcons.UserCheckOutline: DrawableRes get() = DrawableRes(R.drawable.spark_icons_user_check_outline)
 public val SparkIcons.Vaccine: DrawableRes get() = DrawableRes(R.drawable.spark_icons_vaccine)
